@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Event Sport</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>API Event Sport</h1>
+
+  <section id="auth">
+    <h2>Inscription</h2>
+    <form id="registerForm">
+      <input type="email" placeholder="Email" name="email" required />
+      <input type="password" placeholder="Mot de passe" name="password" required />
+      <button type="submit">S'inscrire</button>
+    </form>
+
+    <h2>Connexion</h2>
+    <form id="login-form"> <!-- ID aligné avec le script.js -->
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
+      <button type="submit">Se connecter</button>
+    </form>
+  </section>
+
+  <section id="create-event">
+    <h2>Créer un événement</h2>
+    <form id="eventForm">
+      <input type="text" name="title" placeholder="Titre" required />
+      <input type="date" name="date" required />
+      <input type="text" name="location" placeholder="Lieu" />
+      <textarea name="description" placeholder="Description"></textarea>
+      <button type="submit">Créer</button>
+    </form>
+  </section>
+
+  <section id="event-list">
+    <h2>Liste des événements</h2>
+    <div id="events"></div>
+  </section>
+
+  <section id="messages"></section>
+
+  <script src="script.js"></script>
+</body>
+</html>
