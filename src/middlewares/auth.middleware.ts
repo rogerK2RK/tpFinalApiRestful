@@ -16,24 +16,25 @@ declare global {
 }
 
 // Middleware d'authentification
-export const authMiddleware = (
+export const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Token manquant ou mal formé' });
+    res.status(401).json({ error: 'Token manquant ou mal formé' });
+    return;
   }
 
   const token = authHeader.split(' ')[1];
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as { id: string; email: string };
-    req.user = decoded; // Ajout des infos utilisateur dans req.user
-    next(); // Poursuivre vers le contrôleur
+    req.user = decoded;
+    next();
   } catch (err) {
-    return res.status(401).json({ error: 'Token invalide ou expiré' });
+    res.status(401).json({ error: 'Token invalide ou expiré' });
   }
 };

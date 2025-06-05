@@ -2,7 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
 import eventRoutes from './routes/event.routes';
-import participantRoutes from './routes/participant.routes';
+import participantRoutes from './routes/participants.routes';
+import categoryRoutes from './routes/category.routes';
+
 
 dotenv.config();
 
@@ -30,3 +32,6 @@ app.use('/api/events', eventRoutes);
 
 // Routes de participants
 app.use('/api/participants', participantRoutes);
+
+// Routes de catégories
+app.use('/api/categories', categoryRoutes);
