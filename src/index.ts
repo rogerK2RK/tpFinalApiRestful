@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
+import eventRoutes from './routes/event.routes';
+import participantRoutes from './routes/participant.routes';
 
 dotenv.config();
 
@@ -22,3 +24,9 @@ app.listen(PORT, () => {
 
 // Routes d'authentification
 app.use('/api/auth', authRoutes);
+
+// Routes d'événements
+app.use('/api/events', eventRoutes);
+
+// Routes de participants
+app.use('/api/participants', participantRoutes);

@@ -1,7 +1,7 @@
 import { Request, Response} from 'express';
 import { registerSchema, loginSchema } from '../schemas/user.schema';
 import { db } from '../config/db';
-import { users } from '../models/user';
+import { users } from '../models/user.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { eq } from 'drizzle-orm';

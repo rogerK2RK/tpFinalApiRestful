@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import * as schema from '../models/user'; // Importe les modèles (on peut en ajouter d'autres ensuite)
+import * as schema from '../models/user.model'; // Importe les modèles (on peut en ajouter d'autres ensuite)
 import dotenv from 'dotenv';
 
 dotenv.config();
