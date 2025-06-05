@@ -4,12 +4,11 @@ import { events } from '../models/event.model';
 import { createEventSchema, updateEventSchema } from '../schemas/event.schema';
 import { eq } from 'drizzle-orm';
 
-// Contrôleur pour gérer les événements
+// Créer un nouvel événement
+// Cette fonction crée un nouvel événement dans la base de données
 export const createEvent = async (req: Request, res: Response) => {
   try {
     const parsed = createEventSchema.parse(req.body);
-
-    // Convertir la date string en Date native JS
     const data = {
       ...parsed,
       date: new Date(parsed.date),
@@ -23,26 +22,29 @@ export const createEvent = async (req: Request, res: Response) => {
 };
 
 // Récupérer tous les événements
+// Cette fonction récupère tous les événements de la base de données
 export const getAllEvents = async (req: Request, res: Response) => {
   const result = await db.select().from(events);
   res.json(result);
 };
 
-// Récupérer un événement par son ID
+// Récupérer un événement par ID
+// Cette fonction récupère un événement spécifique par son ID
 export const getEventById = async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const result = await db.select().from(events).where(eq(events.id, id));
 
   if (result.length === 0) return res.status(404).json({ error: 'Événement non trouvé' });
   res.json(result[0]);
 };
 
+
 // Mettre à jour un événement
+// Cette fonction met à jour un événement par son ID
 export const updateEvent = async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const parsed = updateEventSchema.parse(req.body);
 
-  // Convertir la date si elle existe
   const data = {
     ...parsed,
     date: parsed.date ? new Date(parsed.date) : undefined,
@@ -55,8 +57,9 @@ export const updateEvent = async (req: Request, res: Response) => {
 };
 
 // Supprimer un événement
+// Cette fonction supprime un événement par son ID
 export const deleteEvent = async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const result = await db.delete(events).where(eq(events.id, id)).returning();
 
   if (result.length === 0) return res.status(404).json({ error: 'Événement non trouvé' });

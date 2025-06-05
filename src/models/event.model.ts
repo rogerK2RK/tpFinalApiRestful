@@ -1,11 +1,10 @@
-import { pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const events = pgTable('events', {
-  id: serial('id').primaryKey(),
-  title: varchar('title', { length: 255 }).notNull(),
+  id: uuid('id').defaultRandom().primaryKey(),
+  title: text('title').notNull(),
   description: text('description'),
-  location: varchar('location', { length: 255 }),
+  location: text('location'),
   date: timestamp('date').notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
 });
-

@@ -4,6 +4,7 @@ import authRoutes from './routes/auth.routes';
 import eventRoutes from './routes/event.routes';
 import participantRoutes from './routes/participants.routes';
 import categoryRoutes from './routes/category.routes';
+import commentRoutes from './routes/comment.routes';
 
 
 dotenv.config();
@@ -35,3 +36,6 @@ app.use('/api/participants', participantRoutes);
 
 // Routes de catégories
 app.use('/api/categories', categoryRoutes);
+
+// Routes de commentaires
+app.use('/api/comments', commentRoutes);
