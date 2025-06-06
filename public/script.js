@@ -84,10 +84,16 @@ document.getElementById('eventForm').addEventListener('submit', async (e) => {
 // ===== Liste des événements =====
 async function fetchEvents() {
   const response = await fetch(`${API_BASE}/events`);
-  const events = await response.json();
+  const result = await response.json(); 
+  const events = result.data;           
 
   const container = document.getElementById('events');
   container.innerHTML = '';
+
+  if (!Array.isArray(events)) {
+    console.error('Réponse inattendue :', result);
+    return;
+  }
 
   events.forEach(event => {
     const div = document.createElement('div');

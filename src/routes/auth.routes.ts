@@ -5,10 +5,10 @@ import { authMiddleware } from '../middlewares/auth.middleware';
 const router = Router(); //  pas express(), mais Router()
 
 // Route POST /api/auth/register
-router.post('/register', userController.register as RequestHandler);
+router.post('/register', userController.register);
 
 // Route POST /api/auth/login
-router.post('/login', userController.login as RequestHandler);
+router.post('/login', userController.login);
 
 // Route protégée : accessible uniquement si connecté
 router.get('/me', authMiddleware as RequestHandler, (req: Request, res: Response) => {

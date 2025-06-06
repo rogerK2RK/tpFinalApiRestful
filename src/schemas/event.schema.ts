@@ -2,11 +2,12 @@ import { z } from 'zod';
 
 // Schéma de validation pour les événements
 export const createEventSchema = z.object({
-  title: z.string().min(1),
+  title: z.string().min(4, { message: "Le titre est requis" }),
   description: z.string().optional(),
   location: z.string().optional(),
-  date: z.string().refine((val) => /^\d{4}-\d{2}-\d{2}$/.test(val), {
-    message: "Format de date invalide (YYYY-MM-DD attendu)",
+  date:  z.coerce.date({ 
+    required_error: "La date est requise", 
+    invalid_type_error: "La date doit être valide (ex: 2024-12-31)" 
   }),
 });
 
